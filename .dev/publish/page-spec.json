@@ -1,0 +1,165 @@
+{
+ "slug": "dreamrs",
+ "name": "Dreamrs",
+ "tint": "#faf7f7",
+ "accent": "#d91f26",
+ "download": "https://updates.colorlib.com/download/theme/dreamrs.zip",
+ "demo": "https://colorlibhub.com/dreamrs-blocks/",
+ "elementor_demo": "https://colorlibhub.com/dreamrs/",
+ "elementor_repo": "https://github.com/ColorlibHQ/dreamrs",
+ "hero": {
+  "heading": "A real estate theme for firms that design, build and sell homes",
+  "text": "Dreamrs is a free block theme for property developers, estate agents and architecture studios. A photograph hero under a bold gradient, projects with category filters, homes for sale with their rooms and floor area, a testimonial slider, a blog, and a contact form and newsletter sign-up that need no plugin — with eight colour palettes and full site editing throughout.",
+  "image": "dreamrs-block-theme-home.jpg"
+ },
+ "versions": {
+  "heading": "Two versions of Dreamrs",
+  "lede": "The same design, built two ways. Both are free.",
+  "block": {
+   "kicker": "Recommended for new sites",
+   "title": "Block theme",
+   "text": "This download. Everything is edited in WordPress’s own Site Editor, with no plugins: the sections are patterns, with eight colour palettes, a dark mode and a contact form built in."
+  },
+  "elementor": {
+   "kicker": "For sites built with Elementor",
+   "title": "Elementor edition",
+   "text": "The same design built for Elementor, with its own widgets and apartment and portfolio post types. It needs the free Elementor plugin. The source is free on GitHub."
+  }
+ },
+ "blocks": [
+  {
+   "type": "section",
+   "heading": "Projects, filtered by what they are",
+   "text": "Chips above the projects pick out architecture, interiors or exteriors and fade the rest, and each photograph opens full size in a lightbox. A six-project portfolio layout comes with it for the Projects page.",
+   "image": "dreamrs-block-theme-projects.jpg"
+  },
+  {
+   "type": "section",
+   "heading": "Homes for sale, with the facts that matter",
+   "text": "A listing section with the home’s type, name, baths, beds, floor area, price and a button to book a viewing, and an edge-to-edge mosaic of apartments beside it. Below, owners’ words in a slider, one face at a time.",
+   "image": "dreamrs-block-theme-apartment-listing.jpg"
+  },
+  {
+   "type": "section",
+   "heading": "Eight palettes, checked before release",
+   "text": "Coral, the template’s own, then Cobalt, Forest, Terracotta, Graphite and Violet, and two dark palettes, Midnight and Onyx. Each has its own banner gradient, and each is measured against WCAG AA before the theme is built — text, links and button labels, in light mode and in dark — and a palette that fails is not written.",
+   "image": "dreamrs-block-theme-colour-palettes.jpg"
+  },
+  {
+   "type": "section",
+   "heading": "Dark mode the visitor controls",
+   "text": "The switch in the header is the visitor’s, separate from the palette you chose. It follows the reader’s system setting until they decide for themselves.",
+   "image": "dreamrs-block-theme-dark-mode.jpg"
+  },
+  {
+   "type": "section",
+   "heading": "A contact form without a plugin",
+   "text": "A map, then the form beside your office address, phone and email. The form validates on the server, carries a nonce and a honeypot, and works with JavaScript turned off. Messages go to the site’s admin address — or, with one filter, to whatever CRM, webhook or form plugin you already use.",
+   "image": "dreamrs-block-theme-contact-form.jpg"
+  },
+  {
+   "type": "features",
+   "heading": "What you get"
+  },
+  {
+   "type": "section",
+   "heading": "It has a blog, too",
+   "text": "Site news, buying guides, notes from the drawing board. Archives, single posts with an author box, categories, tags, search and a 404 are all designed rather than inherited, with a sidebar that carries search, categories, recent posts and the newsletter sign-up.",
+   "image": "dreamrs-block-theme-blog.jpg"
+  },
+  {
+   "type": "faqs",
+   "heading": "Questions"
+  }
+ ],
+ "features": [
+  {
+   "heading": "A site on the first click",
+   "icon": "fa fa-home",
+   "text": "Activate Dreamrs on a new site and it builds seven pages — Home, About, Services, Projects, Apartments, Blog and Contact — with a menu to match. Every word on them is ordinary, editable content."
+  },
+  {
+   "heading": "Homes for sale, shown properly",
+   "icon": "fa fa-building",
+   "text": "An edge-to-edge mosaic of apartments with baths, beds and floor area, and a listing section with price, rooms, description and a button to book a viewing."
+  },
+  {
+   "heading": "Projects with filters",
+   "icon": "fa fa-filter",
+   "text": "Chips above the projects pick out architecture, interiors or exteriors, and each photograph opens full size in a lightbox. Without JavaScript every project simply shows."
+  },
+  {
+   "heading": "A contact form without a plugin",
+   "icon": "fa fa-envelope",
+   "text": "Validated on the server, protected by a nonce and a honeypot, and it works with JavaScript turned off. A newsletter sign-up for the footer and sidebar comes with it."
+  },
+  {
+   "heading": "Eight palettes, five type pairings",
+   "icon": "fa fa-paint-brush",
+   "text": "Every palette is measured against WCAG AA before the theme is built, including white headlines over the banner photographs, in light mode and in dark."
+  },
+  {
+   "heading": "Dark mode",
+   "icon": "fa fa-moon-o",
+   "text": "A switch for the visitor, separate from the palette you chose. It follows the reader’s system setting until they pick for themselves."
+  },
+  {
+   "heading": "Your form plugin, styled",
+   "icon": "fa fa-plug",
+   "text": "Contact Form 7, WPForms, Gravity Forms, Fluent Forms, Forminator and Ninja Forms take on the theme’s colours and spacing."
+  },
+  {
+   "heading": "Motion that stays out of the way",
+   "icon": "fa fa-magic",
+   "text": "Sections rise into view, figures count up and the testimonials turn by themselves. Visitors who ask their system for reduced motion see none of it, and one filter switches it off."
+  },
+  {
+   "heading": "Fonts on your own server",
+   "icon": "fa fa-font",
+   "text": "Poppins and Open Sans ship with the theme, with Latin Extended, so no visitor’s browser is sent to a font service."
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Do I need a plugin?",
+   "a": "No. The contact form, the newsletter sign-up and dark mode are part of the theme, and so are the starter pages. WooCommerce is supported if you add it, and is not required."
+  },
+  {
+   "q": "Where do contact messages and newsletter sign-ups go?",
+   "a": "To the site’s admin email address, sent with WordPress’s own <code>wp_mail()</code>. If your host cannot send mail, any SMTP plugin fixes both. To send them somewhere else — a CRM, a webhook, a mailing-list plugin — the <code>dreamrs_contact_handlers</code> and <code>dreamrs_newsletter_handlers</code> filters take them over, and Dreamrs sends nothing of its own."
+  },
+  {
+   "q": "Will it overwrite my pages?",
+   "a": "No. The seven starter pages are built only on a site that has no pages of its own yet, and only once. Activating Dreamrs over an existing site leaves your pages alone."
+  },
+  {
+   "q": "Which form plugins does it style?",
+   "a": "Contact Form 7, WPForms, Gravity Forms, Fluent Forms, Forminator and Ninja Forms are mapped onto the theme’s own colours and spacing, so a plugin’s form does not look like a different website."
+  },
+  {
+   "q": "Can I change the colours?",
+   "a": "Eight palettes — Coral (the original), Cobalt, Forest, Terracotta, Graphite, Violet, and the dark Midnight and Onyx — and five type pairings are one click each in the Site Editor under Styles. Each palette restyles every section, including the gradient on the banners."
+  },
+  {
+   "q": "Why are the banners darker than in the HTML template?",
+   "a": "So the headlines stay readable. At the template’s brightness, white text over the brightest buildings measured below the 4.5:1 contrast that WCAG AA asks for. The photograph is dimmed just enough to pass in every palette."
+  },
+  {
+   "q": "Can I turn dark mode or the animations off?",
+   "a": "Yes. Add <code>add_filter( 'dreamrs_enable_dark_mode', '__return_false' );</code> or <code>add_filter( 'dreamrs_enable_scroll_animations', '__return_false' );</code> to a child theme or a small plugin. With the animations off, the project filters and the testimonial buttons keep working."
+  },
+  {
+   "q": "What is the difference between the two versions?",
+   "a": "The block theme is edited in WordPress’s own Site Editor and needs no plugins. The Elementor edition is the same design built for the Elementor page builder, with its own widgets and apartment and portfolio post types; it needs the free Elementor plugin and is available on GitHub. For a new site we recommend the block theme."
+  },
+  {
+   "q": "Is it translation ready?",
+   "a": "Yes. Every string is translatable and <code>languages/dreamrs.pot</code> is included."
+  },
+  {
+   "q": "Does it check for updates?",
+   "a": "Yes, twice a day, because it is distributed outside the WordPress.org theme directory. It sends the theme, WordPress and PHP versions, the locale, whether the site is a multisite, and an identifier derived from the site’s address with the site’s own secret key, so it cannot be turned back into the address. No personal data and no site name. The <code>dreamrs_check_for_updates</code> filter switches it off."
+  }
+ ],
+ "details": "<table style=\"width:100%;border-collapse:collapse;\"><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Requires</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">WordPress 6.6 or newer</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">PHP</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">7.4 or newer</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Tested up to</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">WordPress 7.1</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Licence</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">GNU General Public License v2 or later</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Patterns</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">16 to insert (10 sections, 6 page layouts), plus 13 the templates use</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Templates</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">10, plus 3 template parts</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Starter pages</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">7, built on activation, with a menu</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Styles</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">8 colour palettes × 5 type pairings</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Fonts</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">Poppins and Open Sans, self-hosted</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Icons</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">Tabler Icons (MIT), drawn in the palette’s colours</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Form plugins</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">Contact Form 7, WPForms, Gravity Forms, Fluent Forms, Forminator, Ninja Forms</td></tr><tr><th style=\"text-align:left;padding:10px 18px 10px 0;border-bottom:1px solid #eee4e4;font-weight:600;white-space:nowrap;vertical-align:top;\">Build step</th><td style=\"padding:10px 0;border-bottom:1px solid #eee4e4;\">None — no npm, no SCSS</td></tr></table>"
+}
