@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'DREAMRS_VERSION', '1.0.0' );
+define( 'DREAMRS_VERSION', '1.0.1' );
 
 /**
  * Theme supports.
