@@ -1,0 +1,1578 @@
+/*
+Theme Name: Dreamrs
+Theme URI: https://colorlib.com/wp/themes/dreamrs/
+Author: Colorlib
+Author URI: https://colorlib.com/
+Description: A block theme for property developers, estate agents and architecture studios. A photograph hero under a bold gradient, projects with category filters, a mosaic of homes for sale, service tiles, a testimonial slider, a blog with a sidebar, and contact and newsletter forms that need no plugin — eight colour palettes, five type pairings, visitor dark mode and WooCommerce support. Full site editing throughout.
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 7.4
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Update URI: https://updates.colorlib.com/theme/dreamrs.json
+Text Domain: dreamrs
+Tags: portfolio, blog, full-site-editing, block-patterns, block-styles, template-editing, wide-blocks, accessibility-ready, translation-ready, custom-colors, custom-menu, custom-logo, featured-images, threaded-comments, one-column, two-columns, right-sidebar, sticky-post, theme-options
+
+Dreamrs WordPress Theme, (C) 2026 Colorlib.
+Dreamrs is distributed under the terms of the GNU GPL v2 or later.
+
+Dreamrs bundles the following third-party resources:
+
+Poppins and Open Sans
+License: SIL Open Font License 1.1, https://openfontlicense.org/
+Source: https://fontsource.org/
+
+Tabler Icons
+License: MIT, https://github.com/tabler/tabler-icons/blob/main/LICENSE
+Source: https://tabler.io/icons
+
+Photographs
+License: Unsplash License, https://unsplash.com/license
+Source: https://unsplash.com/
+*/
+
+/*
+ * A block theme styles itself from theme.json. What lives here is what
+ * theme.json cannot express: the components behind the block style variations
+ * registered in functions.php, the header that sits over the opening
+ * photograph, the icons, the project and apartment captions, the testimonial
+ * slider, the hover and scroll behaviour, and the layout corrections a
+ * full-width design needs.
+ *
+ * This file is also the editor stylesheet (add_editor_style), so a tile, a
+ * section title or a caption looks the same while it is being edited.
+ *
+ * Every colour is a palette variable. Nothing here is a literal colour except
+ * the shadows, which is what lets all eight palettes, and dark mode, restyle
+ * every component.
+ */
+
+/* ==========================================================================
+   Tokens
+   ========================================================================== */
+
+body {
+	/* The edge of anything a visitor operates -- a field, a filter chip, the
+	   soft button. The template drew these in #eee, 1.2:1 against the page:
+	   nothing a visitor could see. Half the text colour into the ground clears
+	   3:1 (WCAG 1.4.11) in every palette and turns over with dark mode; 45%
+	   measured 2.91:1 on white and failed .dev/button-boundary.mjs. */
+	--dreamrs-edge: color-mix(in srgb, var(--wp--preset--color--contrast) 50%, var(--wp--preset--color--base));
+	/* The height of the header bar, which the opening photographs run up
+	   behind. */
+	--dreamrs-header-h: 100px;
+}
+
+@media (max-width: 991px) {
+	body {
+		--dreamrs-header-h: 72px;
+	}
+}
+
+/* ==========================================================================
+   Screen reader text
+   ========================================================================== */
+
+.screen-reader-text {
+	border: 0;
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: var(--wp--preset--color--base);
+	clip-path: none;
+	color: var(--wp--preset--color--contrast);
+	display: block;
+	height: auto;
+	left: 6px;
+	padding: 15px 23px 14px;
+	top: 7px;
+	width: auto;
+	z-index: 100000;
+}
+
+/* ==========================================================================
+   Layout rhythm
+
+   WordPress separates the top-level pieces of a page, and every full-width
+   section inside a page's content, with the root block gap: a strip of bare
+   page between every pair. Sections carry their own padding, so they meet
+   edge to edge instead.
+   ========================================================================== */
+
+.wp-site-blocks > * {
+	margin-block-start: 0;
+}
+
+.wp-block-post-content > .alignfull + .alignfull {
+	margin-block-start: 0;
+}
+
+/*
+ * The template spaces its sections 180px apart, not 360: two sections on the
+ * page ground share one gap. A section keeps its top padding when the one
+ * before it has a ground of its own, so a coloured band always has room.
+ */
+.dreamrs-section:not(.has-background) + .dreamrs-section:not(.has-background) {
+	padding-top: 0 !important;
+}
+
+/*
+ * A page built from sections needs no padding of its own -- each section has
+ * it. A page of ordinary paragraphs still needs room to breathe.
+ */
+.dreamrs-page-content:not(:has(> .alignfull:first-child)) {
+	padding-top: var(--wp--preset--spacing--70);
+}
+
+.dreamrs-page-content:not(:has(> .alignfull:last-child)) {
+	padding-bottom: var(--wp--preset--spacing--70);
+}
+
+/*
+ * Two columns that meet the container at both edges, as Bootstrap's offset
+ * columns do: the space between them, not after them.
+ */
+@media (min-width: 782px) {
+	.dreamrs-split {
+		justify-content: space-between;
+	}
+}
+
+/* An <iframe> is inline, and auto margins do not centre an inline box. */
+.dreamrs-map {
+	display: block;
+}
+
+/* ==========================================================================
+   Header
+
+   The template's header is a white bar at 90% over the opening photograph,
+   and it stays at the top once the page moves, turning solid with a shadow.
+   Sticky rather than fixed, so it still holds its own height on a page that
+   does not open with a photograph; the banners pull themselves up behind it.
+   ========================================================================== */
+
+.wp-site-blocks > header.wp-block-template-part {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+}
+
+.admin-bar .wp-site-blocks > header.wp-block-template-part {
+	top: var(--wp-admin--admin-bar--height, 32px);
+}
+
+@media (max-width: 600px) {
+	/* The admin bar scrolls away on a phone, so the header must not wait for it. */
+	.admin-bar .wp-site-blocks > header.wp-block-template-part {
+		top: 0;
+	}
+}
+
+.dreamrs-header {
+	background-color: color-mix(in srgb, var(--wp--preset--color--base) 90%, transparent);
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dreamrs-scrolled .dreamrs-header {
+	background-color: var(--wp--preset--color--base);
+	box-shadow: 0 10px 15px rgb(0 0 0 / 0.06);
+}
+
+.dreamrs-header__bar {
+	min-height: var(--dreamrs-header-h);
+}
+
+/* The opening photograph, where a page starts with one, runs up behind the
+   header -- in a template, or as the first block of a page's content. */
+.wp-site-blocks > header + .dreamrs-banner,
+.wp-site-blocks > header + main > .dreamrs-banner:first-child,
+.wp-site-blocks > header + main > .wp-block-post-content > .dreamrs-banner:first-child {
+	margin-top: calc(-1 * var(--dreamrs-header-h));
+}
+
+/* The name, with the two-house mark before it unless a logo is set. */
+.dreamrs-brand .wp-block-site-title {
+	font-size: 1.75rem;
+	letter-spacing: -0.01em;
+}
+
+@media (max-width: 600px) {
+	.dreamrs-header .dreamrs-brand .wp-block-site-title {
+		font-size: 1.45rem;
+	}
+}
+
+.dreamrs-brand .wp-block-site-title a {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	text-decoration: none;
+}
+
+.dreamrs-brand .wp-block-site-title a::before {
+	content: "";
+	flex: none;
+	width: 1.75em;
+	height: 1em;
+	background-color: var(--wp--preset--color--accent);
+	-webkit-mask: url("assets/icons/mark.svg") center / contain no-repeat;
+	mask: url("assets/icons/mark.svg") center / contain no-repeat;
+}
+
+.dreamrs-brand:has(.wp-block-site-logo img) .wp-block-site-title a::before {
+	display: none;
+}
+
+.dreamrs-header .wp-block-navigation {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+}
+
+.dreamrs-header .wp-block-navigation__container {
+	flex-wrap: nowrap;
+	gap: 0;
+}
+
+.dreamrs-header .wp-block-navigation-item__content {
+	padding: 0.5rem 1.375rem;
+	text-transform: capitalize;
+	color: var(--wp--preset--color--contrast);
+	transition: color 0.2s ease;
+}
+
+.dreamrs-header .wp-block-navigation-item__content:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+/* The page you are on, in the deeper red: the bar is translucent over a
+   photograph, and `primary` measured 4.2:1 against the brightest of it. */
+.dreamrs-header .current-menu-item > .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--primary-deep);
+}
+
+@media (max-width: 1199px) {
+	.dreamrs-header .wp-block-navigation-item__content {
+		padding-inline: 0.8rem;
+	}
+}
+
+/*
+ * Core switches the navigation to its menu button below 600px. Seven links,
+ * the name and the switch need about 960px, so between 600 and 992 the links
+ * had nowhere to go but a second row. Collapse where the template does.
+ */
+@media (max-width: 991px) {
+	.dreamrs-header .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.dreamrs-header .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+}
+
+.wp-block-navigation__responsive-container.is-menu-open {
+	background-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+}
+
+.dreamrs-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+	padding: 0.35rem 0;
+	font-size: var(--wp--preset--font-size--x-large);
+}
+
+/* The bar justifies its links right; the open menu reads from the left. */
+.dreamrs-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content,
+.dreamrs-header .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container {
+	align-items: flex-start;
+}
+
+/* The dark mode switch: an icon, in the text colour. */
+.dreamrs-header .dreamrs-scheme-toggle > .wp-block-button__link {
+	background-color: transparent;
+	color: var(--wp--preset--color--contrast);
+}
+
+/* ==========================================================================
+   Banners: the hero and the inner-page banner
+
+   The template lays a 5-degree gradient, from its red to a faint violet, over
+   an aerial photograph. The gradient is the palette's `banner` preset, so it
+   follows the style variations. Under it the photograph is dimmed a little:
+   at full brightness the white buildings behind the headline left white text
+   at under 3:1, measured by .dev/photo-ground.mjs.
+   ========================================================================== */
+
+.dreamrs-banner {
+	padding-top: calc(var(--dreamrs-header-h) + 2rem);
+	padding-bottom: 3rem;
+}
+
+.dreamrs-banner .wp-block-cover__image-background {
+	filter: brightness(0.74) saturate(1.1);
+}
+
+.dreamrs-banner .wp-block-post-title,
+.dreamrs-banner .wp-block-query-title,
+.dreamrs-banner h1 {
+	letter-spacing: 0.01em;
+}
+
+.dreamrs-banner__terms {
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+}
+
+.dreamrs-banner__terms a,
+.dreamrs-banner__terms .wp-block-post-terms__separator {
+	color: var(--wp--preset--color--overlay);
+	text-decoration: none;
+}
+
+@media (max-width: 781px) {
+	.dreamrs-banner:not(.dreamrs-hero) {
+		min-height: 340px !important;
+	}
+}
+
+.dreamrs-hero__copy {
+	padding-left: 0;
+}
+
+@media (min-width: 992px) {
+	/* Bootstrap's offset-lg-1: one twelfth of the container in. */
+	.dreamrs-hero__copy {
+		padding-left: 8.333%;
+	}
+}
+
+.dreamrs-hero__copy > .dreamrs-hero__eyebrow {
+	margin-bottom: 0;
+	font-size: clamp(1.625rem, 2.6vw, 2.1875rem);
+	font-weight: 400;
+	line-height: 1;
+}
+
+.dreamrs-hero__copy > .dreamrs-hero__title {
+	margin-block-start: 0.35rem;
+	letter-spacing: 3px;
+	line-height: 1.05;
+}
+
+.dreamrs-hero__copy > .dreamrs-hero__lead {
+	margin-block-start: 2.25rem;
+	line-height: 2.2;
+}
+
+@media (max-width: 781px) {
+	.dreamrs-hero {
+		min-height: 520px !important;
+	}
+
+	.dreamrs-hero__copy {
+		text-align: center;
+	}
+
+	.dreamrs-hero__copy > .dreamrs-hero__lead {
+		margin-block-start: 1rem;
+		line-height: 1.8;
+	}
+}
+
+/* ==========================================================================
+   The coloured word in a heading
+
+   The editor's text-colour format writes a transparent background inline, but
+   an inline style does not always survive: content saved without the
+   unfiltered_html capability loses it to kses, and the browser's own yellow
+   <mark> shows through. The format's class is enough to say "text colour only".
+   ========================================================================== */
+
+mark.has-inline-color:not([style*="background"]) {
+	background-color: transparent;
+}
+
+/* ==========================================================================
+   Section titles  (block styles: core/heading › Title, rule before / after /
+   both sides)
+
+   24px and bold, with one word in the brand colour and a 180px rule. The rule
+   is an inline box rather than a flex item: making the heading a flex
+   container would turn "Our" and the coloured word into two flex items and
+   swallow the space between them.
+   ========================================================================== */
+
+.is-style-dreamrs-rule-before,
+.is-style-dreamrs-rule-after,
+.is-style-dreamrs-rule-both {
+	text-transform: capitalize;
+}
+
+.is-style-dreamrs-rule-before::before,
+.is-style-dreamrs-rule-after::after,
+.is-style-dreamrs-rule-both::before,
+.is-style-dreamrs-rule-both::after {
+	content: "";
+	display: inline-block;
+	width: min(180px, 22vw);
+	height: 1px;
+	vertical-align: middle;
+}
+
+.is-style-dreamrs-rule-before::before {
+	margin-right: 15px;
+	background-color: var(--wp--preset--color--accent);
+}
+
+.is-style-dreamrs-rule-after::after {
+	margin-left: clamp(1rem, 3vw, 3.25rem);
+	background-color: var(--wp--preset--color--contrast);
+}
+
+.is-style-dreamrs-rule-both::before,
+.is-style-dreamrs-rule-both::after {
+	width: min(130px, 18vw);
+	background-color: var(--wp--preset--color--contrast);
+}
+
+.is-style-dreamrs-rule-both::before {
+	margin-right: 1.25rem;
+}
+
+.is-style-dreamrs-rule-both::after {
+	margin-left: 1.25rem;
+}
+
+/* ==========================================================================
+   Buttons
+
+   Soft  (block style: core/button › Soft): the template's grey "Learn more",
+   bold and uppercase. Its fill is 1.1:1 against the page, so it carries a
+   hairline in --dreamrs-edge: without one it is a grey smudge, and nothing
+   identifies it as a control but its words.
+   ========================================================================== */
+
+.wp-block-button.is-style-dreamrs-soft > .wp-block-button__link {
+	border: 1px solid var(--dreamrs-edge);
+	background-color: var(--wp--preset--color--surface);
+	color: var(--wp--preset--color--contrast);
+	font-size: 1rem;
+	font-weight: 700;
+	letter-spacing: 0;
+	padding: calc(1.1875rem - 1px) calc(2.5rem - 1px);
+	transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.wp-block-button.is-style-dreamrs-soft > .wp-block-button__link:hover,
+.wp-block-button.is-style-dreamrs-soft > .wp-block-button__link:focus-visible {
+	border-color: var(--wp--preset--color--primary);
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+}
+
+.wp-element-button:focus-visible,
+.wp-block-button__link:focus-visible {
+	outline: 3px solid color-mix(in srgb, var(--wp--preset--color--accent) 60%, transparent);
+	outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Icons
+
+   Tabler Icons, used as masks: the SVG supplies the shape and the element's
+   own text colour fills it, so an icon takes whatever palette is active and
+   turns over in dark mode with no extra files. The class sits on the block
+   itself -- the editor draws a block's classes, but not an empty span inside
+   its text, which is how an icon tile ends up reading "Type / to choose a
+   block". An editor changes an icon under Advanced › Additional CSS class(es).
+   ========================================================================== */
+
+.dreamrs-icon--puzzle { --dreamrs-icon: url("assets/icons/puzzle.svg"); }
+.dreamrs-icon--clipboard-list { --dreamrs-icon: url("assets/icons/clipboard-list.svg"); }
+.dreamrs-icon--rocket { --dreamrs-icon: url("assets/icons/rocket.svg"); }
+.dreamrs-icon--truck-loading { --dreamrs-icon: url("assets/icons/truck-loading.svg"); }
+.dreamrs-icon--bath { --dreamrs-icon: url("assets/icons/bath.svg"); }
+.dreamrs-icon--bed { --dreamrs-icon: url("assets/icons/bed.svg"); }
+.dreamrs-icon--frame { --dreamrs-icon: url("assets/icons/frame.svg"); }
+.dreamrs-icon--home { --dreamrs-icon: url("assets/icons/home.svg"); }
+.dreamrs-icon--device-tablet { --dreamrs-icon: url("assets/icons/device-tablet.svg"); }
+.dreamrs-icon--mail { --dreamrs-icon: url("assets/icons/mail.svg"); }
+.dreamrs-icon--map-pin { --dreamrs-icon: url("assets/icons/map-pin.svg"); }
+.dreamrs-icon--phone { --dreamrs-icon: url("assets/icons/phone.svg"); }
+.dreamrs-icon--user { --dreamrs-icon: url("assets/icons/user.svg"); }
+.dreamrs-icon--folder { --dreamrs-icon: url("assets/icons/folder.svg"); }
+
+.dreamrs-tile__icon[class*="dreamrs-icon--"]::before,
+.dreamrs-detail[class*="dreamrs-icon--"]::before,
+.dreamrs-contact-line[class*="dreamrs-icon--"]::before,
+.dreamrs-meta[class*="dreamrs-icon--"]::before,
+.is-style-dreamrs-facts > li[class*="dreamrs-icon--"]::before {
+	content: "";
+	display: inline-block;
+	flex: none;
+	width: 1em;
+	height: 1em;
+	background-color: currentColor;
+	-webkit-mask: var(--dreamrs-icon) center / contain no-repeat;
+	mask: var(--dreamrs-icon) center / contain no-repeat;
+}
+
+/* A line with its icon in front: the icon hangs in the margin, so a line
+   that wraps stays one block of text. */
+.dreamrs-detail[class*="dreamrs-icon--"],
+.dreamrs-contact-line[class*="dreamrs-icon--"] {
+	position: relative;
+	padding-left: 1.9em;
+}
+
+.dreamrs-detail[class*="dreamrs-icon--"]::before,
+.dreamrs-contact-line[class*="dreamrs-icon--"]::before {
+	position: absolute;
+	left: 0;
+	top: 0.45em;
+}
+
+.dreamrs-contact-line[class*="dreamrs-icon--"] {
+	padding-left: 2.8rem;
+	line-height: 1.7;
+}
+
+.dreamrs-contact-line[class*="dreamrs-icon--"]::before {
+	top: 0.15em;
+	width: 1.6rem;
+	height: 1.6rem;
+}
+
+.dreamrs-contact-line strong {
+	color: var(--wp--preset--color--contrast);
+	font-weight: 500;
+}
+
+.dreamrs-meta[class*="dreamrs-icon--"] {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45em;
+}
+
+/* ==========================================================================
+   About: the photograph on its striped backdrop  (block style: core/image ›
+   Striped backdrop), and the figures
+   ========================================================================== */
+
+.wp-block-image.is-style-dreamrs-striped {
+	position: relative;
+	isolation: isolate;
+	width: fit-content;
+	max-width: 100%;
+	margin-bottom: 15%;
+}
+
+.wp-block-image.is-style-dreamrs-striped::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 15.4%;
+	left: 63.2%;
+	width: 58.2%;
+	height: 100%;
+	background: repeating-linear-gradient(-45deg,
+		color-mix(in srgb, var(--wp--preset--color--contrast) 22%, transparent) 0 1px,
+		transparent 1px 6px);
+}
+
+@media (max-width: 781px) {
+	.wp-block-image.is-style-dreamrs-striped::after {
+		left: 40%;
+		width: 60%;
+	}
+}
+
+.wp-block-image.is-style-dreamrs-striped img {
+	display: block;
+}
+
+.dreamrs-count {
+	margin: 0;
+	font-weight: 300;
+	line-height: 0.95;
+}
+
+.dreamrs-counters .wp-block-group > .dreamrs-count__label {
+	margin-block-start: 0.4rem;
+	font-size: 1rem;
+	font-weight: 300;
+	letter-spacing: 0.02em;
+	text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Projects: a photograph with its caption over the bottom-left corner, and
+   the filter chips (assets/js/interactions.js)
+   ========================================================================== */
+
+.dreamrs-project {
+	position: relative;
+	transition: opacity 0.45s ease, filter 0.45s ease;
+}
+
+.dreamrs-project > .wp-block-image {
+	margin: 0;
+	overflow: hidden;
+}
+
+.dreamrs-project > .wp-block-image img {
+	display: block;
+	width: 100%;
+	transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.dreamrs-project:hover > .wp-block-image img {
+	transform: scale(1.04);
+}
+
+.dreamrs-project > .dreamrs-project__caption {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: min(280px, 78%);
+	max-width: none;
+	margin: 0 !important;
+	padding: 1.1rem clamp(1.25rem, 2.8vw, 2.5rem);
+}
+
+.dreamrs-project__caption > * {
+	margin: 0;
+}
+
+.dreamrs-project__caption > .wp-block-heading {
+	margin-block-start: 0.5rem;
+	line-height: 1.25;
+}
+
+.dreamrs-project__eyebrow {
+	letter-spacing: 1.5px;
+}
+
+.dreamrs-project__caption a {
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.dreamrs-project__caption a:hover,
+.dreamrs-project__caption a:focus-visible {
+	color: var(--wp--preset--color--primary);
+}
+
+.dreamrs-project.is-dimmed {
+	opacity: 0.3;
+	filter: grayscale(1);
+}
+
+/* The chips do nothing without the script, so they show only when it runs --
+   and always in the editor, where they are being edited. */
+.dreamrs-filter {
+	display: none;
+	gap: 1rem 1.375rem;
+}
+
+.dreamrs-js .dreamrs-filter,
+.editor-styles-wrapper .dreamrs-filter {
+	display: flex;
+}
+
+.dreamrs-filter .wp-block-button__link {
+	padding: 0.5rem 0.95rem;
+	border: 1px solid var(--dreamrs-edge);
+	border-radius: 0;
+	background-color: transparent;
+	color: var(--wp--preset--color--contrast);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 400;
+	letter-spacing: 0;
+	transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.dreamrs-filter .wp-block-button__link:hover {
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--primary);
+}
+
+.dreamrs-filter .is-active .wp-block-button__link {
+	border-color: var(--wp--preset--color--primary);
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+}
+
+/* ==========================================================================
+   Tiles  (block style: core/group › Tile): the services' grey cards
+   ========================================================================== */
+
+/* `.wp-block-group` as well as the style: a constrained group also carries
+   `has-global-padding`, and in the editor that rule arrives later and wins a
+   tie -- the tiles lost their padding while being edited. */
+.wp-block-group.is-style-dreamrs-tile {
+	padding: clamp(1.5rem, 2.6vw, 2.1875rem);
+	background-color: var(--wp--preset--color--surface);
+	transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.is-style-dreamrs-tile:hover,
+.is-style-dreamrs-tile:focus-within {
+	transform: translateY(-6px);
+	box-shadow: var(--wp--preset--shadow--lifted);
+}
+
+.is-style-dreamrs-tile .wp-block-heading {
+	line-height: 1.2;
+}
+
+.dreamrs-tile__head > .wp-block-heading {
+	margin: 0;
+}
+
+.dreamrs-tile__icon {
+	flex: none;
+	width: 3.75rem;
+	height: 3.75rem;
+	margin: 0;
+	color: var(--wp--preset--color--primary);
+}
+
+.dreamrs-tile__icon[class*="dreamrs-icon--"]::before {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/* The template's two columns of tiles sit half a step apart. */
+@media (min-width: 782px) {
+	.dreamrs-stagger > .wp-block-column:first-child {
+		padding-top: 3.75rem;
+	}
+}
+
+.dreamrs-stagger > .wp-block-column > .is-style-dreamrs-tile + .is-style-dreamrs-tile {
+	margin-block-start: 1.875rem;
+}
+
+/* ==========================================================================
+   Apartments: an edge-to-edge mosaic; pointing at a home shows its details
+   ========================================================================== */
+
+.dreamrs-apartments__grid,
+.dreamrs-apartments__pair {
+	gap: 0 !important;
+}
+
+.dreamrs-apartments__grid.alignfull {
+	margin-bottom: 0;
+}
+
+.dreamrs-apartments__grid .wp-block-column > * {
+	margin-block: 0;
+}
+
+.dreamrs-apartment {
+	position: relative;
+	overflow: hidden;
+}
+
+.dreamrs-apartment > .wp-block-image {
+	margin: 0;
+}
+
+.dreamrs-apartment > .wp-block-image img {
+	display: block;
+	width: 100%;
+	transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.dreamrs-apartment::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background: linear-gradient(to top, rgb(3 3 5 / 0.9) 0%, rgb(3 3 5 / 0.72) 60%, rgb(3 3 5 / 0.42) 100%);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+	pointer-events: none;
+}
+
+.dreamrs-apartment > .dreamrs-apartment__info {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	max-width: none;
+	margin: 0 !important;
+	padding: 0 clamp(1.25rem, 2.7vw, 2.4rem) clamp(1.25rem, 3.8vw, 3.4rem);
+	visibility: hidden;
+	opacity: 0;
+	transform: translateY(14px);
+	transition: opacity 0.4s ease, transform 0.4s ease, visibility 0s linear 0.4s;
+}
+
+.dreamrs-apartment:hover::before,
+.dreamrs-apartment:focus-within::before {
+	opacity: 1;
+}
+
+.dreamrs-apartment:hover > .dreamrs-apartment__info,
+.dreamrs-apartment:focus-within > .dreamrs-apartment__info {
+	visibility: visible;
+	opacity: 1;
+	transform: none;
+	transition-delay: 0s;
+}
+
+.dreamrs-apartment:hover > .wp-block-image img {
+	transform: scale(1.05);
+}
+
+/* No pointer to hover with: the details stay in view. In the editor too. */
+@media (hover: none) {
+	.dreamrs-apartment::before {
+		opacity: 1;
+	}
+
+	.dreamrs-apartment > .dreamrs-apartment__info {
+		visibility: visible;
+		opacity: 1;
+		transform: none;
+	}
+}
+
+.editor-styles-wrapper .dreamrs-apartment::before {
+	opacity: 1;
+}
+
+.editor-styles-wrapper .dreamrs-apartment > .dreamrs-apartment__info {
+	visibility: visible;
+	opacity: 1;
+	transform: none;
+}
+
+.dreamrs-apartment__info {
+	color: var(--wp--preset--color--overlay);
+}
+
+.dreamrs-apartment__info > * {
+	margin: 0;
+}
+
+.dreamrs-apartment__kind {
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.dreamrs-apartment__info > .dreamrs-apartment__title {
+	margin-block: 0.6rem 0.5rem;
+	font-size: clamp(1.375rem, 2vw, 1.75rem);
+	font-weight: 600;
+}
+
+.dreamrs-apartment__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.dreamrs-apartment__title a:hover,
+.dreamrs-apartment__title a:focus-visible {
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+/* ==========================================================================
+   Facts row  (block style: core/list › Facts row): baths, beds, floor area
+   ========================================================================== */
+
+.is-style-dreamrs-facts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem 1.6rem;
+	padding-left: 0;
+	list-style: none;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.is-style-dreamrs-facts > li {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+	margin: 0;
+}
+
+.is-style-dreamrs-facts > li[class*="dreamrs-icon--"]::before {
+	width: 1.15em;
+	height: 1.15em;
+}
+
+.dreamrs-listing .is-style-dreamrs-facts > li::before {
+	color: var(--wp--preset--color--primary);
+}
+
+/* ==========================================================================
+   Frames  (block style: core/group › Frame): the home page's blog cards
+   ========================================================================== */
+
+.wp-block-group.is-style-dreamrs-frame {
+	padding: clamp(0.9rem, 1.8vw, 1.5625rem);
+	border: 1px solid color-mix(in srgb, var(--wp--preset--color--contrast) 32%, var(--wp--preset--color--base));
+	transition: box-shadow 0.35s ease;
+}
+
+.is-style-dreamrs-frame:hover {
+	box-shadow: var(--wp--preset--shadow--card);
+}
+
+.is-style-dreamrs-frame .wp-block-post-featured-image {
+	margin: 0;
+	overflow: hidden;
+}
+
+.is-style-dreamrs-frame .wp-block-post-featured-image img {
+	transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.is-style-dreamrs-frame:hover .wp-block-post-featured-image img {
+	transform: scale(1.04);
+}
+
+.is-style-dreamrs-frame > .wp-block-post-featured-image + .dreamrs-frame__body {
+	margin-block-start: 0;
+}
+
+.wp-block-group.dreamrs-frame__body.has-background {
+	padding: clamp(1.4rem, 3vw, 2.375rem) clamp(1.25rem, 3vw, 2.625rem);
+}
+
+.dreamrs-frame__body .wp-block-post-title {
+	font-weight: 600;
+	line-height: 1.48;
+}
+
+.dreamrs-frame__body .wp-block-post-excerpt__excerpt {
+	margin: 0;
+}
+
+.dreamrs-post-kicker {
+	gap: 0.4em;
+	text-transform: uppercase;
+}
+
+.dreamrs-post-kicker > * + *::before {
+	content: "/";
+	margin-right: 0.4em;
+	color: var(--wp--preset--color--contrast);
+}
+
+.dreamrs-kicker a {
+	color: var(--wp--preset--color--primary);
+	text-decoration: none;
+}
+
+.dreamrs-stack > li + li {
+	margin-top: 1.875rem;
+}
+
+/* ==========================================================================
+   Testimonials: panels side by side; with the script, a slider whose
+   neighbours' portraits are its buttons, as the template's does
+   ========================================================================== */
+
+.dreamrs-testimonials {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+	gap: 8.5rem 1.875rem;
+	padding-top: 5rem;
+}
+
+.dreamrs-testimonials > .dreamrs-testimonial {
+	max-width: none;
+	margin: 0 !important;
+}
+
+.wp-block-group.dreamrs-testimonial {
+	position: relative;
+	padding: 5rem clamp(1.25rem, 5vw, 4rem) 3.5rem;
+	text-align: center;
+}
+
+.dreamrs-testimonial > * {
+	margin-block: 0;
+}
+
+.dreamrs-testimonial > .dreamrs-testimonial__avatar {
+	position: absolute;
+	top: -4.5rem;
+	left: 50%;
+	width: 8.5rem;
+	margin: 0 !important;
+	transform: translateX(-50%);
+}
+
+.dreamrs-testimonial__avatar img {
+	width: 100% !important;
+	height: auto;
+	box-shadow: 0 10px 30px rgb(0 0 0 / 0.12);
+}
+
+.dreamrs-testimonial > .wp-block-heading {
+	margin-block-start: 0.75rem;
+}
+
+.dreamrs-testimonial > .dreamrs-testimonial__role {
+	margin-block-start: 0.5rem;
+}
+
+.dreamrs-testimonial > .dreamrs-testimonial__quote {
+	margin-block-start: 1.6rem;
+	line-height: 1.9;
+}
+
+/* The slider (interactions.js adds .is-slider and moves the panels into a
+   track). One panel at a time, cross-fading; the others are inert. */
+.dreamrs-testimonials.is-slider {
+	display: block;
+	position: relative;
+	padding-top: 8.5rem;
+}
+
+.dreamrs-testimonials__track {
+	display: grid;
+	max-width: 810px;
+	margin-inline: auto;
+}
+
+.dreamrs-testimonials.is-slider .dreamrs-testimonial {
+	grid-area: 1 / 1;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s ease, visibility 0s linear 0.5s;
+}
+
+.dreamrs-testimonials.is-slider .dreamrs-testimonial.is-current {
+	visibility: visible;
+	opacity: 1;
+	transition-delay: 0s;
+}
+
+.dreamrs-testimonials.is-slider .dreamrs-testimonial__avatar {
+	top: -8.3rem;
+	width: 12.5rem;
+}
+
+.dreamrs-testimonials.is-slider .wp-block-group.dreamrs-testimonial {
+	padding-top: 7rem;
+}
+
+.dreamrs-testimonials__nav {
+	position: absolute;
+	top: calc(8.5rem + 50%);
+	width: 7.5rem;
+	height: 7.5rem;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background-color: var(--wp--preset--color--surface);
+	background-position: center;
+	background-size: cover;
+	box-shadow: 0 8px 24px rgb(0 0 0 / 0.14);
+	cursor: pointer;
+	transform: translateY(-50%);
+	opacity: 0.9;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dreamrs-testimonials__nav--prev {
+	left: calc(50% - 405px - 3.75rem);
+}
+
+.dreamrs-testimonials__nav--next {
+	right: calc(50% - 405px - 3.75rem);
+}
+
+.dreamrs-testimonials__nav:hover,
+.dreamrs-testimonials__nav:focus-visible {
+	transform: translateY(-50%) scale(1.05);
+	opacity: 1;
+}
+
+.dreamrs-testimonials__nav:focus-visible {
+	outline: 3px solid var(--wp--preset--color--primary);
+	outline-offset: 3px;
+}
+
+@media (max-width: 1100px) {
+	.dreamrs-testimonials__nav {
+		top: 3.25rem;
+		width: 4.5rem;
+		height: 4.5rem;
+		transform: none;
+	}
+
+	.dreamrs-testimonials__nav:hover,
+	.dreamrs-testimonials__nav:focus-visible {
+		transform: scale(1.06);
+	}
+
+	.dreamrs-testimonials__nav--prev {
+		left: 0;
+	}
+
+	.dreamrs-testimonials__nav--next {
+		right: 0;
+	}
+}
+
+/* ==========================================================================
+   The blog list: a wide photograph with the date on a tab over its corner,
+   then the words in a panel with a soft shadow
+   ========================================================================== */
+
+.dreamrs-post-list > li + li {
+	margin-top: 3.125rem;
+}
+
+.dreamrs-post-card__media {
+	position: relative;
+}
+
+.dreamrs-post-card__media > .wp-block-post-featured-image {
+	margin: 0;
+	overflow: hidden;
+}
+
+.dreamrs-post-card__media > .wp-block-post-featured-image img {
+	transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.dreamrs-post-card:hover .wp-block-post-featured-image img {
+	transform: scale(1.04);
+}
+
+.dreamrs-post-card__media > .dreamrs-date-tab {
+	position: absolute;
+	left: clamp(1.25rem, 3vw, 2.5rem);
+	bottom: -1.3rem;
+	z-index: 1;
+	max-width: none;
+	margin: 0 !important;
+	padding: 0.8rem 1.6rem;
+	border-radius: 5px;
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+	text-align: center;
+}
+
+/* A post with no featured image (or a page in search results): the tab sits
+   in the flow and overlaps the panel below, instead of floating over it. */
+.dreamrs-post-card__media:not(:has(img)) > .dreamrs-date-tab {
+	position: relative;
+	bottom: auto;
+	display: inline-block;
+	margin: 0 0 -1.3rem clamp(1.25rem, 3vw, 2.5rem) !important;
+}
+
+.dreamrs-date-tab > * {
+	margin: 0 !important;
+}
+
+.dreamrs-date-tab__day {
+	font-size: 1.875rem;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.dreamrs-date-tab__month {
+	font-size: 1.125rem;
+	line-height: 1.5;
+}
+
+.dreamrs-post-card > .wp-block-group.dreamrs-post-card__body {
+	margin-block-start: 0;
+	padding: clamp(2.6rem, 4vw, 3.75rem) clamp(1.25rem, 3vw, 2rem) 2.2rem clamp(1.25rem, 3vw, 2.2rem);
+	box-shadow: var(--wp--preset--shadow--card);
+}
+
+.dreamrs-post-card__body .wp-block-post-title {
+	font-weight: 600;
+}
+
+.dreamrs-post-card__body .wp-block-post-excerpt__excerpt {
+	margin: 0;
+}
+
+.dreamrs-post-meta {
+	color: var(--wp--preset--color--muted);
+}
+
+.dreamrs-post-meta a {
+	color: var(--wp--preset--color--muted);
+	text-decoration: none;
+}
+
+.dreamrs-post-meta a:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+.dreamrs-pagination {
+	margin-top: 3.125rem;
+	gap: 0.6rem;
+}
+
+.dreamrs-pagination .page-numbers,
+.dreamrs-pagination .wp-block-query-pagination-previous,
+.dreamrs-pagination .wp-block-query-pagination-next {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2.8rem;
+	height: 2.8rem;
+	padding: 0 0.8rem;
+	border: 1px solid var(--wp--preset--color--divider);
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.dreamrs-pagination .page-numbers.current {
+	border-color: var(--wp--preset--color--primary);
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+}
+
+.dreamrs-pagination .wp-block-query-pagination-numbers {
+	display: flex;
+	gap: 0.6rem;
+}
+
+/* ==========================================================================
+   Sidebar  (block style: core/group › Widget panel)
+   ========================================================================== */
+
+.wp-block-group.is-style-dreamrs-widget {
+	padding: 1.875rem;
+	background-color: var(--wp--preset--color--tint);
+}
+
+.dreamrs-sidebar > .is-style-dreamrs-widget + .is-style-dreamrs-widget {
+	margin-block-start: 1.875rem;
+}
+
+.is-style-dreamrs-widget > .dreamrs-widget__title {
+	margin-bottom: 0;
+	padding-bottom: 0.9rem;
+	border-bottom: 1px solid var(--wp--preset--color--divider);
+	font-weight: 500;
+}
+
+.is-style-dreamrs-widget .wp-block-categories,
+.is-style-dreamrs-widget .wp-block-latest-posts {
+	padding-left: 0;
+	list-style: none;
+}
+
+.is-style-dreamrs-widget .wp-block-categories li {
+	padding: 0.7rem 0;
+	border-bottom: 1px solid var(--wp--preset--color--divider);
+	color: var(--wp--preset--color--muted);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.is-style-dreamrs-widget .wp-block-categories li:first-child {
+	padding-top: 0;
+}
+
+.is-style-dreamrs-widget .wp-block-categories a {
+	color: var(--wp--preset--color--muted);
+	text-decoration: none;
+}
+
+.is-style-dreamrs-widget .wp-block-categories a:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+.is-style-dreamrs-widget .wp-block-latest-posts li {
+	display: flow-root;
+	margin-bottom: 1.25rem;
+}
+
+.is-style-dreamrs-widget .wp-block-latest-posts__featured-image.alignleft {
+	margin: 0 1.25rem 0 0;
+}
+
+.is-style-dreamrs-widget .wp-block-latest-posts__featured-image img {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+}
+
+.is-style-dreamrs-widget .wp-block-latest-posts__post-title {
+	display: block;
+	color: var(--wp--preset--color--contrast);
+	font-weight: 500;
+	line-height: 1.5;
+	text-decoration: none;
+}
+
+.is-style-dreamrs-widget .wp-block-latest-posts__post-title:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+.is-style-dreamrs-widget .wp-block-latest-posts__post-date {
+	color: var(--wp--preset--color--muted);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.is-style-dreamrs-widget .wp-block-tag-cloud a {
+	margin: 0 0.2rem 0.5rem 0;
+	padding: 0.25rem 1.25rem;
+	border: 1px solid var(--wp--preset--color--divider);
+	border-radius: 0;
+	background-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--muted);
+	font-size: 0.8125rem !important;
+	text-decoration: none;
+}
+
+.is-style-dreamrs-widget .wp-block-tag-cloud a:hover {
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--primary);
+}
+
+.dreamrs-widget--search .wp-block-search__inside-wrapper {
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.dreamrs-widget--search .wp-block-search__button,
+.dreamrs-widget--search .wp-block-search__input {
+	width: 100%;
+	margin: 0;
+}
+
+/* ==========================================================================
+   Single post
+   ========================================================================== */
+
+.dreamrs-post-meta.is-layout-flex {
+	margin-block-start: 1.5rem;
+}
+
+.dreamrs-entry blockquote.wp-block-quote {
+	margin: 2rem 0;
+	padding: 1.9rem 1.9rem 1.9rem 2.2rem;
+	background-color: var(--wp--preset--color--surface);
+}
+
+.dreamrs-entry blockquote.wp-block-quote p {
+	margin: 0;
+}
+
+.dreamrs-tags a {
+	display: inline-block;
+	margin: 0 0.3rem 0.4rem 0;
+	padding: 0.2rem 0.9rem;
+	border: 1px solid var(--wp--preset--color--divider);
+	color: var(--wp--preset--color--muted);
+	text-decoration: none;
+}
+
+.dreamrs-tags .wp-block-post-terms__separator {
+	display: none;
+}
+
+.dreamrs-post-nav {
+	padding-block: 1.9rem;
+	border-top: 1px solid var(--wp--preset--color--divider);
+	border-bottom: 1px solid var(--wp--preset--color--divider);
+	font-weight: 500;
+}
+
+.dreamrs-post-nav a {
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.dreamrs-post-nav a:hover {
+	color: var(--wp--preset--color--primary);
+}
+
+/* A post with no author (an import, a script) renders an empty author block:
+   no panel for it either. */
+.dreamrs-author-box:not(:has(.wp-block-post-author)) {
+	display: none;
+}
+
+.dreamrs-author .wp-block-post-author__avatar img {
+	border-radius: 50%;
+}
+
+.dreamrs-author .wp-block-post-author__name {
+	font-weight: 600;
+}
+
+.dreamrs-author .wp-block-post-author__bio {
+	color: var(--wp--preset--color--muted);
+}
+
+.dreamrs-comments .dreamrs-comment {
+	margin-block: 1.9rem 0;
+}
+
+.dreamrs-comments .wp-block-comment-content p {
+	margin-top: 0;
+	color: var(--wp--preset--color--muted);
+}
+
+.dreamrs-comment .wp-block-comment-date a,
+.dreamrs-comment__reply a {
+	color: var(--wp--preset--color--muted);
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+/* ==========================================================================
+   Footer
+
+   The template's near-black ground, grey words, white headings. `on-dark` is
+   its own palette slug because the palette's `muted` fails there.
+   ========================================================================== */
+
+.dreamrs-footer .wp-block-heading {
+	margin-bottom: 1.4rem;
+	font-weight: 600;
+}
+
+.dreamrs-footer p {
+	line-height: 1.93;
+}
+
+.dreamrs-footer .dreamrs-brand .wp-block-site-title {
+	font-size: var(--wp--preset--font-size--title);
+}
+
+.dreamrs-footer .dreamrs-brand .wp-block-site-title a:not(.wp-element-button) {
+	color: var(--wp--preset--color--overlay);
+}
+
+.dreamrs-footer .wp-block-separator.dreamrs-rule {
+	width: 100%;
+	max-width: var(--wp--style--global--content-size);
+	margin-block: 2.2rem;
+	border: 0;
+	border-top: 1px solid color-mix(in srgb, var(--wp--preset--color--on-dark) 30%, transparent);
+	background: none;
+	opacity: 1;
+}
+
+.dreamrs-footer-nav .wp-block-navigation__container {
+	gap: 0.55rem;
+}
+
+.dreamrs-footer .dreamrs-footer-nav {
+	font-weight: 400;
+}
+
+.dreamrs-footer-nav .wp-block-navigation-item__content {
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.dreamrs-footer .wp-block-social-links {
+	gap: 1.4rem;
+	margin-top: 1.5rem;
+}
+
+.dreamrs-footer .dreamrs-detail {
+	margin-block: 0 0.4rem;
+}
+
+/* Links on the dark ground: the palette's `primary` is chosen to be readable
+   on the page, not on near-black. */
+.wp-block-group.has-dark-background-color a:not(.wp-element-button) {
+	color: var(--wp--preset--color--on-dark);
+	text-underline-offset: 0.2em;
+	transition: color 0.2s ease;
+}
+
+.wp-block-group.has-dark-background-color a:not(.wp-element-button):hover,
+.wp-block-group.has-dark-background-color a:not(.wp-element-button):focus-visible {
+	color: var(--wp--preset--color--overlay);
+}
+
+/* ==========================================================================
+   Scroll reveals (assets/js/interactions.js)
+
+   Hidden only once the script has run, and only for what is below the first
+   screen, so a visitor without JavaScript, a crawler, or anyone looking at the
+   top of the page sees content immediately.
+   ========================================================================== */
+
+.dreamrs-motion .dreamrs-reveal {
+	opacity: 0;
+	transform: translate3d(0, 30px, 0);
+	transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+	transition-delay: var(--dreamrs-reveal-delay, 0ms);
+}
+
+.dreamrs-motion .dreamrs-reveal.is-revealed {
+	opacity: 1;
+	transform: none;
+}
+
+/* ==========================================================================
+   Phones
+   ========================================================================== */
+
+@media (max-width: 781px) {
+	.dreamrs-projects__grid > .wp-block-column + .wp-block-column {
+		margin-top: var(--wp--preset--spacing--60);
+	}
+
+	/* One home to a row, each tall enough to carry its details. */
+	.dreamrs-apartment > .wp-block-image img {
+		aspect-ratio: 4 / 3 !important;
+	}
+}
+
+/* ==========================================================================
+   Reduced motion: no movement anywhere, content shown at once.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+	.dreamrs-motion .dreamrs-reveal {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
+	.is-style-dreamrs-tile,
+	.dreamrs-project,
+	.dreamrs-project > .wp-block-image img,
+	.dreamrs-apartment > .wp-block-image img,
+	.dreamrs-apartment > .dreamrs-apartment__info,
+	.dreamrs-testimonials.is-slider .dreamrs-testimonial,
+	.wp-block-post-featured-image img {
+		transition: none;
+	}
+
+	.is-style-dreamrs-tile:hover,
+	.is-style-dreamrs-tile:focus-within,
+	.dreamrs-project:hover > .wp-block-image img,
+	.dreamrs-apartment:hover > .wp-block-image img,
+	.is-style-dreamrs-frame:hover .wp-block-post-featured-image img,
+	.dreamrs-post-card:hover .wp-block-post-featured-image img {
+		transform: none;
+	}
+}

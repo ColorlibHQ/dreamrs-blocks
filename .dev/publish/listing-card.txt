@@ -1,0 +1,5 @@
+Picker line (themes listing, "Which theme fits…"):
+A property developer or estate agent
+
+Card blurb:
+Dreamrs is a free block theme for firms that design, build and sell homes. It ships projects with category filters, apartment listings with rooms and floor area, and a contact form that needs no plugin, with eight colour palettes and dark mode.

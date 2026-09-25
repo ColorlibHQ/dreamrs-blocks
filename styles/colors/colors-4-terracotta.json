@@ -1,0 +1,83 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"title": "Terracotta",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"name": "Base",
+					"slug": "base",
+					"color": "#ffffff"
+				},
+				{
+					"name": "Surface",
+					"slug": "surface",
+					"color": "#f7f2ee"
+				},
+				{
+					"name": "Tint",
+					"slug": "tint",
+					"color": "#fcf8f5"
+				},
+				{
+					"name": "Contrast",
+					"slug": "contrast",
+					"color": "#241814"
+				},
+				{
+					"name": "Muted",
+					"slug": "muted",
+					"color": "#6b5c55"
+				},
+				{
+					"name": "Primary",
+					"slug": "primary",
+					"color": "#b1431c"
+				},
+				{
+					"name": "Primary deep",
+					"slug": "primary-deep",
+					"color": "#8a3314"
+				},
+				{
+					"name": "Accent",
+					"slug": "accent",
+					"color": "#e8773f"
+				},
+				{
+					"name": "Dark",
+					"slug": "dark",
+					"color": "#120a06"
+				},
+				{
+					"name": "Divider",
+					"slug": "divider",
+					"color": "#ece2da"
+				},
+				{
+					"name": "Overlay",
+					"slug": "overlay",
+					"color": "#ffffff"
+				},
+				{
+					"name": "On dark",
+					"slug": "on-dark",
+					"color": "#a1918a"
+				},
+				{
+					"name": "On primary",
+					"slug": "on-primary",
+					"color": "#ffffff"
+				}
+			],
+			"gradients": [
+				{
+					"name": "Banner",
+					"slug": "banner",
+					"gradient": "linear-gradient(85deg, rgb(160,56,20) 0%, rgba(84,24,8,0.42) 100%)"
+				}
+			]
+		}
+	}
+}

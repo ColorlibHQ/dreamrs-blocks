@@ -1,0 +1,144 @@
+/*
+ * Dark mode.
+ *
+ * This LIFTS the active palette rather than replacing it. A Forest site stays
+ * green; only the grounds and the text invert. That is what lets one file
+ * serve all eight palettes -- and it is why the rules redefine the preset
+ * variables themselves rather than restyling components: everything in the
+ * theme, patterns and user content alike, already reads from those variables.
+ *
+ * `--wp--preset--color--overlay` is deliberately NOT touched. It is near-white
+ * in every palette because it sits on photographs and on the `dark` ground,
+ * both of which stay dark here.
+ */
+
+.dreamrs-dark {
+	color-scheme: dark;
+
+	/* The page turns over: what was the near-black text colour becomes the
+	   ground, and vice versa. */
+	--wp--preset--color--base: #141518;
+	--wp--preset--color--surface: #1e2024;
+	--wp--preset--color--tint: #1a1c20;
+	--wp--preset--color--contrast: #f2f1ef;
+	--wp--preset--color--muted: #a9a7a3;
+	--wp--preset--color--divider: #34363c;
+
+	/* `dark` is the footer's ground. On a dark page it has to go deeper than
+	   the page, or the footer stops being a separate thing. */
+	--wp--preset--color--dark: #08090b;
+}
+
+/*
+ * The brand colour has to hold its own against a dark ground.
+ *
+ * Each palette's `primary` is chosen to clear AA against white; against
+ * #141518 most of them do not. Mixing the palette's own `accent` toward white
+ * lifts each one without flattening the differences between them.
+ *
+ * The slug it mixes is load-bearing: a colour-mix on an undefined variable
+ * makes the whole declaration invalid, `primary` stops resolving, and every
+ * button on the site renders as bare text while every text-contrast check
+ * still passes. build_theme.py refuses to build if this file names a slug the
+ * palette does not define, and reads the two percentages below to audit them.
+ *
+ * On a dark ground hover *brightens* rather than deepens, so primary-deep
+ * carries more white, not less. `on-primary` turns over with the fill: a
+ * lifted `primary` is a light fill, and a white label on it is unreadable.
+ */
+.dreamrs-dark {
+	--wp--preset--color--primary: color-mix(in srgb, var(--wp--preset--color--accent) 72%, white);
+	--wp--preset--color--primary-deep: color-mix(in srgb, var(--wp--preset--color--accent) 56%, white);
+	--wp--preset--color--on-primary: #141518;
+}
+
+/* Photographs are a touch bright against a dark page. */
+@media (prefers-reduced-motion: no-preference) {
+	.dreamrs-dark img:not(.wp-block-cover__image-background):not([src$=".svg"]) {
+		filter: brightness(0.94);
+		transition: filter 0.2s ease;
+	}
+}
+
+/*
+ * The toggle itself.
+ *
+ * It is a core/button with a class, so it can be dropped anywhere in the
+ * editor and inherits the theme's button styling.
+ */
+.wp-block-button.dreamrs-scheme-toggle > .wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	/* An icon, not a filled button: no border and no padding. */
+	border: 0;
+	padding: 0;
+	/* 44px square: this is the one control on the page that is only an icon,
+	   and a 16px tap target is not a tap target. */
+	width: 44px;
+	height: 44px;
+	min-width: 0;
+	border-radius: 4px;
+}
+
+.wp-block-button.dreamrs-scheme-toggle > .wp-block-button__link:hover,
+.wp-block-button.dreamrs-scheme-toggle > .wp-block-button__link:focus-visible {
+	background-color: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.wp-block-button.dreamrs-scheme-toggle > .wp-block-button__link::before {
+	width: 1.15em;
+	height: 1.15em;
+}
+
+.wp-block-button.dreamrs-scheme-toggle > .wp-block-button__link::before {
+	content: "";
+	width: 1em;
+	height: 1em;
+	flex: 0 0 auto;
+	background-color: currentColor;
+	/* A moon, and a sun in dark mode. Masked rather than an icon font or an
+	   inline SVG, so it takes the button's colour automatically and costs no
+	   extra request. */
+	-webkit-mask: var(--dreamrs-scheme-icon) center / contain no-repeat;
+	mask: var(--dreamrs-scheme-icon) center / contain no-repeat;
+	--dreamrs-scheme-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z'/%3E%3C/svg%3E");
+}
+
+.dreamrs-dark .wp-block-button.dreamrs-scheme-toggle > .wp-block-button__link::before {
+	--dreamrs-scheme-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1' stroke='black' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/*
+ * Form controls do not inherit the page's colours, so they have to be told.
+ * Without this the contact form stays a block of white in a dark page.
+ */
+.dreamrs-dark .dreamrs-field__control:not(.dreamrs-newsletter__email),
+.dreamrs-dark .wp-block-search__input,
+.dreamrs-dark .wp-block-post-comments-form input:not([type="submit"]),
+.dreamrs-dark .wp-block-post-comments-form textarea {
+	background-color: var(--wp--preset--color--surface);
+	border-color: var(--wp--preset--color--divider);
+	color: var(--wp--preset--color--contrast);
+}
+
+/* A native date or time picker draws its own indicator in black. */
+.dreamrs-dark input[type="date"]::-webkit-calendar-picker-indicator,
+.dreamrs-dark input[type="time"]::-webkit-calendar-picker-indicator {
+	filter: invert(1);
+}
+
+/*
+ * Tiles and frames. A shadow barely registers against a dark page, so a tile
+ * lifts with a deeper one on hover.
+ */
+.dreamrs-dark .is-style-dreamrs-tile:hover,
+.dreamrs-dark .is-style-dreamrs-tile:focus-within,
+.dreamrs-dark .is-style-dreamrs-frame:hover {
+	box-shadow: 0 14px 34px rgb(0 0 0 / 0.5);
+}
+
+/* The header's translucent bar and its solid state follow the dark page. */
+.dreamrs-dark.dreamrs-scrolled .dreamrs-header {
+	box-shadow: 0 10px 15px rgb(0 0 0 / 0.4);
+}

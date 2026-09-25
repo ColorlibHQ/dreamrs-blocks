@@ -1,0 +1,13 @@
+node_modules
+.DS_Store
+*.map
+.sass-cache/
+# Raw full-page captures; the composed side-by-sides in .dev/compare/*.jpg are kept.
+.dev/compare/source/
+.dev/compare/theme/
+.dev/compare/demo/
+.dev/*.tmp.mjs
+.dev/compare/editor/
+# Local only: side-by-side renders (third-party template photos) and the build report.
+.dev/compare/
+.dev/REPORT.md

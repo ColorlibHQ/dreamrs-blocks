@@ -1,0 +1,395 @@
+/*
+ * Forms.
+ *
+ * Two jobs: style Dreamrs' own contact and newsletter forms, and pull the common form
+ * plugins onto the theme's tokens so a form block does not look like a
+ * different website dropped into the page.
+ *
+ * Everything here is expressed in palette variables, so a form follows
+ * whichever of the eight colour variations a site has active.
+ */
+
+/* ---------------------------------------------------------------------------
+   Shared controls
+   ---------------------------------------------------------------------------
+   One selector list covers Dreamrs' fields and every plugin's, so there is one
+   place to change how an input looks.
+*/
+
+.dreamrs-field__control,
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"],
+.wpcf7 input[type="date"],
+.wpcf7 input[type="time"],
+.wpcf7 input[type="number"],
+.wpcf7 textarea,
+.wpcf7 select,
+.wpforms-field input[type="text"],
+.wpforms-field input[type="email"],
+.wpforms-field input[type="tel"],
+.wpforms-field textarea,
+.wpforms-field select,
+.gform_wrapper input[type="text"],
+.gform_wrapper input[type="email"],
+.gform_wrapper input[type="tel"],
+.gform_wrapper textarea,
+.gform_wrapper select,
+.fluentform input[type="text"],
+.fluentform input[type="email"],
+.fluentform textarea,
+.fluentform select,
+.forminator-input,
+.forminator-textarea,
+.nf-form-content input[type="text"],
+.nf-form-content input[type="email"],
+.nf-form-content textarea {
+	width: 100%;
+	/* Without this every control is 34px wider than the cell it sits in.
+	   `width: 100%` plus 2rem of horizontal padding and a 1px border adds up
+	   to 100% + 34px on a content-box, so the right-hand column of the
+	   contact grid pushed out past the panel it lives in. Form controls do
+	   not inherit a border-box reset from WordPress or from the theme, so they
+	   have to be told. */
+	box-sizing: border-box;
+	padding: 0.85rem 1rem;
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--medium);
+	line-height: 1.5;
+	color: var(--wp--preset--color--contrast);
+	background-color: var(--wp--preset--color--base);
+	/* A field's edge has to be visible (WCAG 1.4.11, 3:1): the template's
+	   #eee hairline was 1.2:1, a white box on a white page. --dreamrs-edge is
+	   measured to clear 3:1 in every palette and in dark mode (style.css). */
+	border: 1px solid var(--dreamrs-edge);
+	border-radius: 0;
+	box-shadow: none;
+	transition: border-color 0.2s ease;
+	/* Inputs inherit nothing from the page by default and Safari in particular
+	   will impose its own 11px system font without this. */
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.dreamrs-field__control:focus,
+.wpcf7 input:focus,
+.wpcf7 textarea:focus,
+.wpforms-field input:focus,
+.wpforms-field textarea:focus,
+.gform_wrapper input:focus,
+.gform_wrapper textarea:focus,
+.fluentform input:focus,
+.fluentform textarea:focus,
+.forminator-input:focus,
+.forminator-textarea:focus {
+	border-color: var(--wp--preset--color--primary);
+	outline: 3px solid color-mix(in srgb, var(--wp--preset--color--primary) 30%, transparent);
+	outline-offset: 0;
+}
+
+/*
+ * One height for every control in the grid.
+ *
+ * A date or time input renders its own native picker widget and comes out
+ * taller than the text input beside it -- in a two-column contact grid
+ * that means Date sits a few pixels lower than Phone, and the rows visibly
+ * fail to line up. Setting the same min-height on all of them, rather than
+ * only on date and time as the first version did, is what makes the grid read
+ * as a grid. It also stops iOS collapsing a date field to its text width.
+ */
+.dreamrs-field__control {
+	min-height: 3.1rem;
+}
+
+.dreamrs-field__control[type="date"],
+.dreamrs-field__control[type="time"] {
+	/* Safari ignores the padding on these unless the box is content-box. */
+	line-height: 1.5;
+}
+
+textarea.dreamrs-field__control {
+	min-height: 7rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Labels
+   --------------------------------------------------------------------------- */
+
+.dreamrs-field__label,
+.wpcf7 label,
+.wpforms-field-label,
+.gfield_label,
+.fluentform .ff-el-input--label label {
+	display: block;
+	margin-bottom: 0.45rem;
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	color: var(--wp--preset--color--contrast);
+}
+
+.dreamrs-field__required {
+	color: var(--wp--preset--color--primary);
+}
+
+/* ---------------------------------------------------------------------------
+   The contact form (inc/contact.php)
+   --------------------------------------------------------------------------- */
+
+.dreamrs-contact,
+.dreamrs-newsletter {
+	margin: 0;
+}
+
+/*
+ * The anchor the POST redirect comes back to. It has to be in the flow but
+ * invisible, and it must not add height -- and it sits far enough above the
+ * form that the sticky header does not cover the result.
+ */
+.dreamrs-form-anchor {
+	position: relative;
+	top: -130px;
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.dreamrs-contact__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.25rem 1.5rem;
+}
+
+.dreamrs-contact__grid .dreamrs-field {
+	margin: 0;
+}
+
+/* The message and the subject run the full width; name and email pair up. */
+.dreamrs-contact__grid .dreamrs-field--message,
+.dreamrs-contact__grid .dreamrs-field--subject {
+	grid-column: 1 / -1;
+}
+
+@media (max-width: 600px) {
+	.dreamrs-contact__grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.dreamrs-contact__actions {
+	margin: 1.75rem 0 0;
+}
+
+.dreamrs-contact__actions .wp-element-button,
+.dreamrs-newsletter__button {
+	cursor: pointer;
+	border: 0;
+}
+
+/* The honeypot. Off-screen rather than display:none, because some bots skip
+   anything that is display:none and fill everything else. */
+.dreamrs-trap {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.dreamrs-notice {
+	margin: 0 0 1.4rem;
+	padding: 0.95rem 1.2rem;
+	border-left: 3px solid currentColor;
+	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.6;
+	background-color: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+/* The words carry the message; the edge marks it. `contrast` reads on every
+   ground the form can sit on, in every palette and in both schemes. */
+.dreamrs-notice.is-ok {
+	color: var(--wp--preset--color--contrast);
+}
+
+.dreamrs-notice.is-error {
+	color: var(--wp--preset--color--primary);
+}
+
+/* On the footer's dark ground the notice speaks in the footer's colours. */
+.has-dark-background-color .dreamrs-notice.is-ok,
+.has-dark-background-color .dreamrs-notice.is-error {
+	color: var(--wp--preset--color--overlay);
+}
+
+.dreamrs-notice--compact {
+	margin-bottom: 0.9rem;
+	padding: 0.6rem 0.9rem;
+}
+
+/* ---------------------------------------------------------------------------
+   The newsletter (inc/newsletter.php)
+
+   Stacked in the sidebar: the field over a full-width button. Inline in the
+   footer: a white pill with a round send button inside its right end, as the
+   template draws it.
+   --------------------------------------------------------------------------- */
+
+.dreamrs-newsletter__row {
+	display: flex;
+	flex-direction: column;
+	gap: 0.9rem;
+	margin: 0;
+}
+
+.dreamrs-newsletter__button {
+	width: 100%;
+}
+
+.dreamrs-newsletter--inline .dreamrs-newsletter__row {
+	position: relative;
+	flex-direction: row;
+	gap: 0;
+}
+
+.dreamrs-newsletter--inline .dreamrs-newsletter__email {
+	min-height: 2.75rem;
+	padding: 0.6rem 3.75rem 0.6rem 1.5rem;
+	border-radius: 999px;
+	border-color: var(--wp--preset--color--overlay);
+	background-color: var(--wp--preset--color--overlay);
+	color: var(--wp--preset--color--dark);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.dreamrs-newsletter--inline .dreamrs-newsletter__email::placeholder {
+	color: #595959;
+	opacity: 1;
+}
+
+.dreamrs-newsletter__send {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 3.75rem;
+	border: 0;
+	border-radius: 999px;
+	background-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--on-primary);
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.dreamrs-newsletter__send::before {
+	content: "";
+	display: block;
+	width: 1.15rem;
+	height: 1.15rem;
+	margin: auto;
+	background-color: currentColor;
+	-webkit-mask: url("../icons/send.svg") center / contain no-repeat;
+	mask: url("../icons/send.svg") center / contain no-repeat;
+}
+
+.dreamrs-newsletter__send:hover,
+.dreamrs-newsletter__send:focus-visible {
+	background-color: var(--wp--preset--color--primary-deep);
+}
+
+.dreamrs-newsletter__send:focus-visible,
+.dreamrs-newsletter__email:focus-visible {
+	outline: 3px solid color-mix(in srgb, var(--wp--preset--color--accent) 60%, transparent);
+	outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Plugin submit buttons
+   ---------------------------------------------------------------------------
+   Each plugin ships its own button colours. Map them onto the element button
+   so a form's submit matches every other button on the site.
+*/
+
+.wpcf7 input[type="submit"],
+.wpforms-submit,
+.gform_button,
+.fluentform .ff-btn-submit,
+.forminator-button-submit,
+.nf-form-content .submit-wrap input {
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	line-height: 1;
+	padding: 1.05rem 2.1rem;
+	color: var(--wp--preset--color--on-primary);
+	background-color: var(--wp--preset--color--primary);
+	border: 0;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+	width: auto;
+}
+
+.wpcf7 input[type="submit"]:hover,
+.wpforms-submit:hover,
+.gform_button:hover,
+.fluentform .ff-btn-submit:hover,
+.forminator-button-submit:hover {
+	background-color: var(--wp--preset--color--primary-deep);
+}
+
+/* ---------------------------------------------------------------------------
+   Plugin validation messages
+   --------------------------------------------------------------------------- */
+
+.wpcf7-not-valid-tip,
+.wpforms-error,
+.gfield_validation_message,
+.fluentform .error {
+	color: var(--wp--preset--color--primary);
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.wpcf7 .wpcf7-response-output {
+	margin: 1.4rem 0 0;
+	padding: 0.95rem 1.2rem;
+	border: 0;
+	border-left: 3px solid currentColor;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+/* ---------------------------------------------------------------------------
+   Core search and comments
+   --------------------------------------------------------------------------- */
+
+.wp-block-search__input {
+	box-sizing: border-box;
+	padding: 0.85rem 1rem;
+	border: 1px solid var(--dreamrs-edge);
+	border-radius: 0;
+	background-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+}
+
+.wp-block-post-comments-form input[type="text"],
+.wp-block-post-comments-form input[type="email"],
+.wp-block-post-comments-form input[type="url"],
+.wp-block-post-comments-form textarea {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.85rem 1rem;
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--medium);
+	color: var(--wp--preset--color--contrast);
+	background-color: var(--wp--preset--color--base);
+	border: 1px solid var(--dreamrs-edge);
+	border-radius: 0;
+}
+
+.wp-block-post-comments-form label {
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 700;
+}

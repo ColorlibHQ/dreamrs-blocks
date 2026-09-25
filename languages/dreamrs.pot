@@ -1,0 +1,900 @@
+# Copyright (C) 2026 Colorlib
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Dreamrs 1.0.0\n"
+"Report-Msgid-Bugs-To: https://colorlib.com/\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Colorlib\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-25T06:53:14+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: dreamrs\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "Dreamrs"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://colorlib.com/wp/themes/dreamrs/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "A block theme for property developers, estate agents and architecture studios. A photograph hero under a bold gradient, projects with category filters, a mosaic of homes for sale, service tiles, a testimonial slider, a blog with a sidebar, and contact and newsletter forms that need no plugin — eight colour palettes, five type pairings, visitor dark mode and WooCommerce support. Full site editing throughout."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Colorlib"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://colorlib.com/"
+msgstr ""
+
+#: functions.php:74
+msgid "Title, rule before"
+msgstr ""
+
+#: functions.php:75
+msgid "Title, rule after"
+msgstr ""
+
+#: functions.php:76
+msgid "Title, rules both sides"
+msgstr ""
+
+#: functions.php:79
+msgid "Tile"
+msgstr ""
+
+#: functions.php:80
+msgid "Frame"
+msgstr ""
+
+#: functions.php:81
+msgid "Widget panel"
+msgstr ""
+
+#: functions.php:84
+msgid "Soft"
+msgstr ""
+
+#: functions.php:87
+msgid "Striped backdrop"
+msgstr ""
+
+#: functions.php:90
+msgid "Facts row"
+msgstr ""
+
+#: functions.php:150
+msgid "Previous testimonial"
+msgstr ""
+
+#: functions.php:151
+msgid "Next testimonial"
+msgstr ""
+
+#: functions.php:152
+msgid "Testimonials"
+msgstr ""
+
+#: functions.php:166
+msgid "Dreamrs: sections"
+msgstr ""
+
+#: functions.php:167
+msgid "Full-width sections for building pages."
+msgstr ""
+
+#: functions.php:170
+msgid "Dreamrs: pages"
+msgstr ""
+
+#: functions.php:171
+msgid "Complete page layouts."
+msgstr ""
+
+#: inc/contact.php:44
+msgid "Your message"
+msgstr ""
+
+#: inc/contact.php:49
+msgid "Your name"
+msgstr ""
+
+#: inc/contact.php:55
+#: inc/newsletter.php:82
+#: inc/newsletter.php:83
+msgid "Email address"
+msgstr ""
+
+#: inc/contact.php:61
+msgid "Subject"
+msgstr ""
+
+#: inc/contact.php:218
+msgid "Send message"
+msgstr ""
+
+#: inc/contact.php:231
+msgid "Thank you — your message is with us. We will reply by email within a working day."
+msgstr ""
+
+#: inc/contact.php:232
+msgid "Please check the form: every field marked * needs an answer."
+msgstr ""
+
+#: inc/contact.php:233
+#: inc/newsletter.php:63
+msgid "That email address does not look right."
+msgstr ""
+
+#: inc/contact.php:234
+msgid "Sorry, the message could not be sent. Please email or call us instead."
+msgstr ""
+
+#: inc/contact.php:235
+msgid "That form had been open a while and expired. Please send it again."
+msgstr ""
+
+#: inc/contact.php:244
+#: inc/newsletter.php:77
+msgid "Leave this field empty"
+msgstr ""
+
+#. translators: %s: site name.
+#: inc/contact.php:359
+#, php-format
+msgid "[%s] Website message"
+msgstr ""
+
+#: inc/front-page-setup.php:33
+msgid "Home"
+msgstr ""
+
+#: inc/front-page-setup.php:38
+msgid "About"
+msgstr ""
+
+#: inc/front-page-setup.php:43
+msgid "Services"
+msgstr ""
+
+#: inc/front-page-setup.php:48
+msgid "Projects"
+msgstr ""
+
+#: inc/front-page-setup.php:53
+msgid "Apartments"
+msgstr ""
+
+#: inc/front-page-setup.php:58
+msgid "Blog"
+msgstr ""
+
+#: inc/front-page-setup.php:63
+msgid "Contact"
+msgstr ""
+
+#: inc/front-page-setup.php:310
+msgid "Primary"
+msgstr ""
+
+#: inc/newsletter.php:41
+msgid "Subscribe"
+msgstr ""
+
+#: inc/newsletter.php:62
+msgid "Thank you — you are on the list."
+msgstr ""
+
+#: inc/newsletter.php:64
+msgid "Sorry, that did not go through. Please try again later."
+msgstr ""
+
+#: inc/newsletter.php:65
+msgid "That form had been open a while and expired. Please try again."
+msgstr ""
+
+#. translators: %s: site name.
+#: inc/newsletter.php:138
+#, php-format
+msgid "[%s] Newsletter sign-up"
+msgstr ""
+
+#. translators: %s: email address.
+#: inc/newsletter.php:140
+#, php-format
+msgid "%s asked to join the newsletter."
+msgstr ""
+
+#: inc/scheme.php:96
+#: inc/scheme.php:127
+msgid "Switch to dark mode"
+msgstr ""
+
+#: inc/scheme.php:97
+msgid "Switch to light mode"
+msgstr ""
+
+#. translators: 1: the update host, 2: the list of values sent, 3: filter name.
+#: inc/updates.php:198
+#, php-format
+msgid "Dreamrs checks %1$s for updates twice a day and sends %2$s. No personal data and no site name is sent, and the identifier is a one-way hash. Add the %3$s filter to switch it off."
+msgstr ""
+
+#: patterns/about.php
+msgctxt "Pattern title"
+msgid "About: photograph, statement and figures"
+msgstr ""
+
+#: patterns/about.php
+msgctxt "Pattern description"
+msgid "A photograph on a striped backdrop beside the firm's statement, a button and three figures that count up."
+msgstr ""
+
+#: patterns/apartment-listing.php
+msgctxt "Pattern title"
+msgid "Apartments: one listing in detail"
+msgstr ""
+
+#: patterns/apartment-listing.php
+msgctxt "Pattern description"
+msgid "One home in detail: a photograph beside its type, name, rooms, price, description and a viewing button."
+msgstr ""
+
+#: patterns/apartments.php
+msgctxt "Pattern title"
+msgid "Apartments: gallery"
+msgstr ""
+
+#: patterns/apartments.php
+msgctxt "Pattern description"
+msgid "Four homes for sale in an edge-to-edge mosaic; pointing at one shows its type, name, baths, beds and floor area."
+msgstr ""
+
+#: patterns/blog-latest.php
+msgctxt "Pattern title"
+msgid "Latest posts"
+msgstr ""
+
+#: patterns/blog-latest.php
+msgctxt "Pattern description"
+msgid "The newest post large, with its photograph, and the two before it beside it."
+msgstr ""
+
+#: patterns/contact.php
+msgctxt "Pattern title"
+msgid "Contact: map, form and details"
+msgstr ""
+
+#: patterns/contact.php
+msgctxt "Pattern description"
+msgid "A map, then the contact form beside the office address, phone and email."
+msgstr ""
+
+#: patterns/footer.php
+msgctxt "Pattern title"
+msgid "Footer"
+msgstr ""
+
+#: patterns/footer.php
+msgctxt "Pattern description"
+msgid "The name, then four columns on the dark ground: about, contact details, links and a newsletter sign-up."
+msgstr ""
+
+#: patterns/header.php
+msgctxt "Pattern title"
+msgid "Header"
+msgstr ""
+
+#: patterns/header.php
+msgctxt "Pattern description"
+msgid "Logo, navigation and the dark mode switch on a translucent bar that sits over the opening photograph and stays at the top as you scroll."
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern title"
+msgid "Hero"
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern description"
+msgid "The opening photograph under the brand gradient, with a headline on the left."
+msgstr ""
+
+#: patterns/hidden-404.php
+msgctxt "Pattern title"
+msgid "404 content"
+msgstr ""
+
+#: patterns/hidden-404.php
+msgctxt "Pattern description"
+msgid "What a visitor sees when nothing is there."
+msgstr ""
+
+#: patterns/hidden-archive-banner.php
+msgctxt "Pattern title"
+msgid "Archive banner"
+msgstr ""
+
+#: patterns/hidden-archive-banner.php
+msgctxt "Pattern description"
+msgid "The banner an archive title sits on."
+msgstr ""
+
+#: patterns/hidden-author.php
+msgctxt "Pattern title"
+msgid "Author box"
+msgstr ""
+
+#: patterns/hidden-author.php
+msgctxt "Pattern description"
+msgid "The author's photograph, name and biography under a post."
+msgstr ""
+
+#: patterns/hidden-blog-banner.php
+msgctxt "Pattern title"
+msgid "Blog banner"
+msgstr ""
+
+#: patterns/hidden-blog-banner.php
+msgctxt "Pattern description"
+msgid "The banner for the posts page."
+msgstr ""
+
+#: patterns/hidden-comments.php
+msgctxt "Pattern title"
+msgid "Comments"
+msgstr ""
+
+#: patterns/hidden-comments.php
+msgctxt "Pattern description"
+msgid "The comments area for a single post."
+msgstr ""
+
+#: patterns/hidden-page-banner.php
+msgctxt "Pattern title"
+msgid "Page banner"
+msgstr ""
+
+#: patterns/hidden-page-banner.php
+msgctxt "Pattern description"
+msgid "The photograph banner a page title sits on."
+msgstr ""
+
+#: patterns/hidden-post-banner.php
+msgctxt "Pattern title"
+msgid "Post banner"
+msgstr ""
+
+#: patterns/hidden-post-banner.php
+msgctxt "Pattern description"
+msgid "The banner a post title sits on."
+msgstr ""
+
+#: patterns/hidden-post-meta.php
+msgctxt "Pattern title"
+msgid "Post meta"
+msgstr ""
+
+#: patterns/hidden-post-meta.php
+msgctxt "Pattern description"
+msgid "Author, date and categories for a single post."
+msgstr ""
+
+#: patterns/hidden-posts-list.php
+msgctxt "Pattern title"
+msgid "Posts list"
+msgstr ""
+
+#: patterns/hidden-posts-list.php
+msgctxt "Pattern description"
+msgid "The post list used by the blog, every archive and search."
+msgstr ""
+
+#: patterns/hidden-search-banner.php
+msgctxt "Pattern title"
+msgid "Search banner"
+msgstr ""
+
+#: patterns/hidden-search-banner.php
+msgctxt "Pattern description"
+msgid "The banner search results sit under."
+msgstr ""
+
+#: patterns/page-about.php
+msgctxt "Pattern title"
+msgid "Page: about"
+msgstr ""
+
+#: patterns/page-about.php
+msgctxt "Pattern description"
+msgid "A complete about page, built from the theme's sections."
+msgstr ""
+
+#: patterns/page-apartments.php
+msgctxt "Pattern title"
+msgid "Page: apartments"
+msgstr ""
+
+#: patterns/page-apartments.php
+msgctxt "Pattern description"
+msgid "A complete apartments page, built from the theme's sections."
+msgstr ""
+
+#: patterns/page-contact.php
+msgctxt "Pattern title"
+msgid "Page: contact"
+msgstr ""
+
+#: patterns/page-contact.php
+msgctxt "Pattern description"
+msgid "A complete contact page, built from the theme's sections."
+msgstr ""
+
+#: patterns/page-home.php
+msgctxt "Pattern title"
+msgid "Page: home"
+msgstr ""
+
+#: patterns/page-home.php
+msgctxt "Pattern description"
+msgid "A complete home page, built from the theme's sections."
+msgstr ""
+
+#: patterns/page-projects.php
+msgctxt "Pattern title"
+msgid "Page: projects"
+msgstr ""
+
+#: patterns/page-projects.php
+msgctxt "Pattern description"
+msgid "A complete projects page, built from the theme's sections."
+msgstr ""
+
+#: patterns/page-services.php
+msgctxt "Pattern title"
+msgid "Page: services"
+msgstr ""
+
+#: patterns/page-services.php
+msgctxt "Pattern description"
+msgid "A complete services page, built from the theme's sections."
+msgstr ""
+
+#: patterns/projects-portfolio.php
+msgctxt "Pattern title"
+msgid "Projects: portfolio of six"
+msgstr ""
+
+#: patterns/projects-portfolio.php
+msgctxt "Pattern description"
+msgid "Six projects in two staggered rows, with chips that pick out architecture, interiors or exteriors."
+msgstr ""
+
+#: patterns/projects.php
+msgctxt "Pattern title"
+msgid "Projects: three with filters"
+msgstr ""
+
+#: patterns/projects.php
+msgctxt "Pattern description"
+msgid "Three projects in a staggered pair of columns, each with a caption over its corner, and chips that pick out a category."
+msgstr ""
+
+#: patterns/services.php
+msgctxt "Pattern title"
+msgid "Services: four tiles and a statement"
+msgstr ""
+
+#: patterns/services.php
+msgctxt "Pattern description"
+msgid "Four grey tiles with icons in a staggered grid, beside a statement and a button."
+msgstr ""
+
+#: patterns/sidebar.php
+msgctxt "Pattern title"
+msgid "Sidebar"
+msgstr ""
+
+#: patterns/sidebar.php
+msgctxt "Pattern description"
+msgid "Search, categories, recent posts, tags and the newsletter, each in its own panel."
+msgstr ""
+
+#: patterns/testimonials.php
+msgctxt "Pattern title"
+msgid "Testimonials: slider"
+msgstr ""
+
+#: patterns/testimonials.php
+msgctxt "Pattern description"
+msgid "Owners' words, one at a time, with the next and previous faces at either side."
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Surface"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Tint"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Muted"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Primary"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Primary deep"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Dark"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Divider"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "Overlay"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "On dark"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Color name"
+msgid "On primary"
+msgstr ""
+
+#: theme.json
+#: styles/colors/colors-1-coral.json
+#: styles/colors/colors-2-cobalt.json
+#: styles/colors/colors-3-forest.json
+#: styles/colors/colors-4-terracotta.json
+#: styles/colors/colors-5-graphite.json
+#: styles/colors/colors-6-violet.json
+#: styles/colors/colors-7-midnight.json
+#: styles/colors/colors-8-onyx.json
+msgctxt "Gradient name"
+msgid "Banner"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Poppins"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Open Sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "System"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "X Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Title"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Heading"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Display"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Colossal"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "20"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "30"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "40"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "50"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "60"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "70"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "80"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Card"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Lifted"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Page without banner"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Page with sidebar"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Post without sidebar"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Sidebar"
+msgstr ""
+
+#: styles/colors/colors-1-coral.json
+msgctxt "Style variation name"
+msgid "Coral"
+msgstr ""
+
+#: styles/colors/colors-2-cobalt.json
+msgctxt "Style variation name"
+msgid "Cobalt"
+msgstr ""
+
+#: styles/colors/colors-3-forest.json
+msgctxt "Style variation name"
+msgid "Forest"
+msgstr ""
+
+#: styles/colors/colors-4-terracotta.json
+msgctxt "Style variation name"
+msgid "Terracotta"
+msgstr ""
+
+#: styles/colors/colors-5-graphite.json
+msgctxt "Style variation name"
+msgid "Graphite"
+msgstr ""
+
+#: styles/colors/colors-6-violet.json
+msgctxt "Style variation name"
+msgid "Violet"
+msgstr ""
+
+#: styles/colors/colors-7-midnight.json
+msgctxt "Style variation name"
+msgid "Midnight"
+msgstr ""
+
+#: styles/colors/colors-8-onyx.json
+msgctxt "Style variation name"
+msgid "Onyx"
+msgstr ""
+
+#: styles/typography/type-1-poppins.json
+msgctxt "Style variation name"
+msgid "Poppins throughout"
+msgstr ""
+
+#: styles/typography/type-2-poppins-open-sans.json
+msgctxt "Style variation name"
+msgid "Poppins headings, Open Sans text"
+msgstr ""
+
+#: styles/typography/type-3-open-sans.json
+msgctxt "Style variation name"
+msgid "Open Sans throughout"
+msgstr ""
+
+#: styles/typography/type-4-open-sans-poppins.json
+msgctxt "Style variation name"
+msgid "Open Sans headings, Poppins text"
+msgstr ""
+
+#: styles/typography/type-5-system.json
+msgctxt "Style variation name"
+msgid "System fonts"
+msgstr ""

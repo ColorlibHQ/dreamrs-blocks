@@ -1,0 +1,9 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "steps": [
+    { "step": "setSiteOptions", "options": { "blogname": "Dreamrs", "blogdescription": "Homes designed and built in the city" } },
+    { "step": "activateTheme", "themeFolderName": "dreamrs" },
+    { "step": "login", "username": "admin", "password": "password" }
+  ]
+}
